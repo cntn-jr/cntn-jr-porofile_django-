@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block header %}
+    <div class="alert alert-warning mb-5" role="alert">
+        <h1 class="alert-heading">Profile Detail</h1>
+        <p class="ml-5">あなたのことを書いています</p>
+    </div>
+{% endblock header %}
+{% block content %}
+    <div class="container alert-info py-4 pl-4 w-50 rounded">
+        <div class="row">
+            <div class="col-2">お名前：</div>
+            <div class="col-8 text-center">{{ object.name }}</div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-2">年齢：</div>
+            <div class="col-8 text-center">{{ object.age }}</div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-2">職業：</div>
+            <div class="col-8 text-center">
+                {% if object.job == 'info' %}
+                    社会人
+                {% elif object.job == 'success' %}
+                    学生
+                {% else %}
+                    無職
+                {% endif %}
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-2">生年月日：</div>
+            <div class="col-8 text-center">{{ object.birth }}</div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-2">コメント：</div>
+            <div class="col-8 text-center">{{ object.memo }}</div>
+        </div>
+    </div>
+    <div class="container text-right mt-3 w-50">
+        <a class="btn btn-info mr-2" href="{% url 'list'%}" role="button">back</a>
+        <a class="btn btn-primary mr-2" href="{% url 'update' object.pk %}" role="button">update</a>
+        <a class="btn btn-danger mr-2" href="{% url 'delete' object.pk %}" role="button">delete</a>
+    </div>
+{% endblock content %}
